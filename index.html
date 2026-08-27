@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ehika Saree | Elegance in Every Drape</title>
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -18,12 +17,12 @@
             --primary-pink: #d81b60;
             --deep-wine: #6a0d25;
             --soft-rose: #fce4ec;
-            --gold-accent: #d4af37;
+            --accent-gold: #c59d5f;
             --bg-creme: #fffafb;
             --text-dark: #2c1810;
-            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.9);
             --glass-border: rgba(216, 27, 96, 0.15);
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -55,14 +54,14 @@
         /* Ambient Glow & Blobs */
         .ambient-glow {
             position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(216, 27, 96, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(216, 27, 96, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
             filter: blur(40px);
-            transition: transform 0.2s ease-out;
+            transition: transform 0.15s ease-out;
         }
 
         /* Header / Navigation */
@@ -72,29 +71,31 @@
             left: 0;
             width: 100%;
             z-index: 100;
-            padding: 1.2rem 8%;
+            padding: 1rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 250, 251, 0.85);
             transition: var(--transition);
         }
 
         header.scrolled {
-            background: rgba(255, 250, 251, 0.92);
-            padding: 0.8rem 8%;
-            box-shadow: 0 10px 30px rgba(106, 13, 37, 0.05);
+            background: rgba(255, 250, 251, 0.96);
+            padding: 0.7rem 6%;
+            box-shadow: 0 8px 25px rgba(106, 13, 37, 0.06);
         }
 
         .brand {
             display: flex;
             flex-direction: column;
+            text-decoration: none;
         }
 
         .brand-devanagari {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--primary-pink);
             letter-spacing: 2px;
             font-weight: 600;
@@ -102,7 +103,7 @@
 
         .brand-name {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--primary-pink);
             letter-spacing: 1px;
@@ -111,15 +112,17 @@
 
         .brand-sub {
             font-family: 'Great Vibes', cursive;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--deep-wine);
             margin-top: -3px;
         }
 
+        /* Nav links & Mobile Drawer */
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2rem;
+            align-items: center;
         }
 
         nav a {
@@ -132,60 +135,59 @@
             transition: var(--transition);
         }
 
-        nav a::after {
-            content: '🌸';
-            position: absolute;
-            font-size: 0.6rem;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%) scale(0);
-            transition: var(--transition);
-        }
-
         nav a:hover {
             color: var(--primary-pink);
-        }
-
-        nav a:hover::after {
-            transform: translateX(-50%) scale(1);
         }
 
         .cta-btn {
             background: linear-gradient(135deg, var(--primary-pink), var(--deep-wine));
             color: #fff;
-            padding: 0.7rem 1.8rem;
+            padding: 0.65rem 1.6rem;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
             letter-spacing: 0.5px;
-            box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+            box-shadow: 0 6px 18px rgba(216, 27, 96, 0.22);
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             border: none;
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(216, 27, 96, 0.35);
+        }
+
+        /* Mobile Hamburger */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-wine);
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            padding: 0 8%;
+            padding: 7rem 6% 4rem 6%;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
             position: relative;
-            background: radial-gradient(circle at 80% 50%, rgba(252, 228, 236, 0.6) 0%, transparent 60%);
+            background: radial-gradient(circle at 85% 40%, rgba(252, 228, 236, 0.6) 0%, transparent 65%);
         }
 
         .hero-content {
-            flex: 1.2;
-            padding-top: 4rem;
+            flex: 1.1;
             z-index: 2;
         }
 
@@ -195,20 +197,20 @@
             gap: 8px;
             background: var(--soft-rose);
             color: var(--deep-wine);
-            padding: 0.4rem 1.2rem;
+            padding: 0.4rem 1.1rem;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
             border: 1px solid rgba(216, 27, 96, 0.2);
         }
 
         .hero h1 {
             font-family: 'Marcellus', serif;
-            font-size: 4rem;
-            line-height: 1.15;
+            font-size: clamp(2.3rem, 5vw, 3.8rem);
+            line-height: 1.18;
             color: var(--deep-wine);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
         }
 
         .hero h1 span {
@@ -217,37 +219,41 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.05rem;
+            line-height: 1.7;
             color: #665;
             max-width: 520px;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2.2rem;
         }
 
         .hero-actions {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1.2rem;
         }
 
         .btn-outline {
             border: 1.5px solid var(--primary-pink);
             color: var(--primary-pink);
-            padding: 0.7rem 1.8rem;
+            padding: 0.65rem 1.6rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-outline:hover {
             background: var(--soft-rose);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
         .hero-visual {
-            flex: 0.8;
+            flex: 0.9;
             position: relative;
             display: flex;
             justify-content: center;
@@ -256,10 +262,10 @@
         }
 
         .visual-circle {
-            width: 420px;
-            height: 420px;
+            width: clamp(280px, 35vw, 420px);
+            height: clamp(280px, 35vw, 420px);
             border-radius: 50%;
-            border: 2px dashed rgba(216, 27, 96, 0.4);
+            border: 2px dashed rgba(216, 27, 96, 0.35);
             position: relative;
             display: flex;
             justify-content: center;
@@ -275,48 +281,43 @@
 
         .visual-card {
             position: absolute;
-            width: 320px;
-            height: 420px;
-            background: linear-gradient(145deg, #ffffff, #fff2f6);
-            border-radius: 200px 200px 30px 30px;
-            box-shadow: 0 25px 50px rgba(106, 13, 37, 0.12);
+            width: clamp(240px, 30vw, 320px);
+            height: clamp(340px, 42vw, 440px);
+            border-radius: 180px 180px 25px 25px;
+            box-shadow: 0 20px 45px rgba(106, 13, 37, 0.15);
             border: 4px solid #fff;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            transform: rotate(-3deg);
+            transform: rotate(-2deg);
             transition: var(--transition);
+            background: #fff;
         }
 
         .visual-card:hover {
             transform: rotate(0deg) scale(1.02);
         }
 
-        .card-icon {
-            font-size: 3.5rem;
-            color: var(--primary-pink);
-            margin-bottom: 1rem;
+        .visual-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
         }
 
         /* Collections Section */
         .section {
-            padding: 6rem 8%;
+            padding: 5rem 6%;
             position: relative;
             z-index: 2;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
         }
 
         .section-title h2 {
             font-family: 'Marcellus', serif;
-            font-size: 2.6rem;
+            font-size: clamp(2rem, 4vw, 2.7rem);
             color: var(--deep-wine);
             position: relative;
             display: inline-block;
@@ -325,8 +326,8 @@
         .section-title h2::after {
             content: '🌸';
             position: absolute;
-            font-size: 1.2rem;
-            bottom: -20px;
+            font-size: 1.1rem;
+            bottom: -18px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -334,13 +335,14 @@
         .section-title p {
             color: #776;
             margin-top: 1rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
+        /* Products Grid */
         .grid-collections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
 
         .collection-card {
@@ -348,78 +350,126 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
             transition: var(--transition);
-            position: relative;
-            cursor: pointer;
+            display: flex;
+            flex-direction: column;
         }
 
         .collection-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(216, 27, 96, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(216, 27, 96, 0.15);
         }
 
         .card-img-wrapper {
-            height: 260px;
-            background: linear-gradient(135deg, #ffebee, #fce4ec);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
+            width: 100%;
+            height: 340px;
             overflow: hidden;
+            background: #fdf0f4;
         }
 
-        .card-img-wrapper i {
-            font-size: 4.5rem;
-            color: var(--primary-pink);
-            opacity: 0.8;
-            transition: var(--transition);
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform 0.6s ease;
         }
 
-        .collection-card:hover .card-img-wrapper i {
-            transform: scale(1.15) rotate(5deg);
+        .collection-card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--deep-wine);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .card-body {
-            padding: 1.8rem;
-            text-align: center;
+            padding: 1.5rem;
+            text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card-body h3 {
             font-family: 'Marcellus', serif;
             color: var(--deep-wine);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
         }
 
         .card-body p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
         }
 
-        /* Visit / Location Box */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(216, 27, 96, 0.08);
+            padding-top: 0.8rem;
+        }
+
+        .price-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+        }
+
+        .inquire-btn {
+            color: var(--deep-wine);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+
+        .inquire-btn:hover {
+            color: var(--primary-pink);
+            transform: translateX(3px);
+        }
+
+        /* Location Section */
         .location-section {
-            background: linear-gradient(135deg, #fff0f5 0%, #fff 100%);
-            border-radius: 30px;
-            margin: 2rem 8% 6rem 8%;
-            padding: 4rem;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+            border-radius: 24px;
+            margin: 2rem 6% 5rem 6%;
+            padding: clamp(2rem, 5vw, 3.5rem);
             border: 1px solid rgba(216, 27, 96, 0.15);
-            box-shadow: 0 20px 40px rgba(106, 13, 37, 0.04);
+            box-shadow: 0 15px 35px rgba(106, 13, 37, 0.04);
             display: flex;
             flex-wrap: wrap;
-            gap: 3rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .loc-details {
-            flex: 1;
-            min-width: 300px;
+            flex: 1.2;
+            min-width: 280px;
         }
 
         .loc-details h3 {
             font-family: 'Marcellus', serif;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.3rem);
             color: var(--deep-wine);
             margin-bottom: 1.5rem;
         }
@@ -428,19 +478,19 @@
             display: flex;
             align-items: flex-start;
             gap: 1.2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.3rem;
         }
 
         .loc-icon {
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
             background: var(--soft-rose);
             color: var(--primary-pink);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
         }
 
@@ -452,71 +502,117 @@
 
         .loc-text p {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             line-height: 1.5;
         }
 
         .loc-badge {
             flex: 1;
-            min-width: 280px;
+            min-width: 260px;
             background: #fff;
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 2.2rem;
+            border-radius: 18px;
             border-left: 5px solid var(--primary-pink);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
         }
 
         /* Footer */
         footer {
             background: var(--deep-wine);
             color: #fff;
-            padding: 3rem 8% 2rem 8%;
+            padding: 3rem 6% 2rem 6%;
             text-align: center;
         }
 
         .footer-brand {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #fff;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .footer-sub {
             font-family: 'Great Vibes', cursive;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--soft-rose);
-            margin-bottom: 2rem;
+            margin-bottom: 1.8rem;
         }
 
         .footer-copy {
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.65);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 1.5rem;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
+        /* Responsiveness & Mobile Drawer Adjustments */
+        @media (max-width: 992px) {
             .hero {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 text-align: center;
-                padding-top: 8rem;
+                padding-top: 7.5rem;
+                gap: 2.5rem;
             }
 
-            .hero p {
-                margin: 0 auto 2.5rem auto;
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .hero-actions {
                 justify-content: center;
             }
 
-            .hero-visual {
-                margin-top: 3rem;
+            .loc-badge {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.8rem 5%;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--bg-creme);
+                padding: 6rem 2rem 2rem 2rem;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s ease;
+                z-index: 99;
+            }
+
+            nav.active {
+                right: 0;
             }
 
             nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.8rem;
+            }
+
+            .header-cta {
                 display: none;
+            }
+
+            .section {
+                padding: 4rem 5%;
+            }
+
+            .location-section {
+                margin: 2rem 5% 4rem 5%;
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -524,32 +620,34 @@
 
 <body>
 
-    <!-- Petal Simulation Canvas -->
     <canvas id="petal-canvas"></canvas>
 
-    <!-- Cursor Follow Glow -->
     <div class="ambient-glow" id="glow"></div>
 
-    <!-- Header Navigation -->
     <header id="navbar">
-        <div class="brand">
+        <a href="#home" class="brand">
             <span class="brand-devanagari">इहिका सारी</span>
             <span class="brand-name">Ehika</span>
             <span class="brand-sub">Saree</span>
-        </div>
-        <nav>
+        </a>
+
+        <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav id="navLinks">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#collections">Collections</a></li>
-                <li><a href="#visit">Visit Boutique</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#collections" class="nav-link">Collections</a></li>
+                <li><a href="#visit" class="nav-link">Visit Boutique</a></li>
             </ul>
         </nav>
-        <a href="#visit" class="cta-btn">
+
+        <a href="#visit" class="cta-btn header-cta">
             <i class="fa-solid fa-location-dot"></i> Find Us
         </a>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-tag">
@@ -557,7 +655,7 @@
             </div>
             <h1>Elegance Crafted For <span>Every Woman</span></h1>
             <p>Step into the radiant world of handcrafted sarees. From timeless Banarasis to modern lightweight
-                georgettes, find the weave that speaks your elegance.</p>
+                georgettes, find the drape that weaves your story.</p>
             <div class="hero-actions">
                 <a href="#collections" class="cta-btn">Explore Collection</a>
                 <a href="#visit" class="btn-outline">Visit Store</a>
@@ -567,56 +665,76 @@
         <div class="hero-visual">
             <div class="visual-circle"></div>
             <div class="visual-card">
-                <i class="fa-solid fa-spa card-icon"></i>
-                <h3 style="font-family: 'Marcellus', serif; color: var(--deep-wine); margin-bottom: 0.5rem;">Pure
-                    Heritage</h3>
-                <p style="font-size: 0.85rem; color: #777;">Graceful silk, rich textures, and royal shades designed to
-                    celebrate you.</p>
+                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
+                    alt="Ehika Traditional Silk Saree">
             </div>
         </div>
     </section>
 
-    <!-- Collections Section -->
     <section class="section" id="collections">
         <div class="section-title">
             <h2>Signature Weaves</h2>
-            <p>Carefully curated sarees designed for festivities, weddings, and subtle everyday luxury.</p>
+            <p>Carefully curated sarees designed for festivities, weddings, and celebratory moments.</p>
         </div>
 
         <div class="grid-collections">
             <div class="collection-card">
                 <div class="card-img-wrapper">
-                    <i class="fa-solid fa-gem"></i>
+                    <span class="card-tag">Bridal Silk</span>
+                    <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=80"
+                        alt="Royal Crimson Banarasi Saree">
                 </div>
                 <div class="card-body">
-                    <h3>Bridal & Kanjivaram</h3>
-                    <p>Woven with golden zari and festive hues, tailored for timeless celebratory memories.</p>
+                    <div>
+                        <h3>Royal Crimson Banarasi</h3>
+                        <p>Intricate golden zari work on pure silk, creating an opulent drape for grand celebrations.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price-tag">Traditional Edit</span>
+                        <a href="#visit" class="inquire-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <div class="collection-card">
                 <div class="card-img-wrapper">
-                    <i class="fa-solid fa-feather-pointed"></i>
+                    <span class="card-tag">Handcrafted</span>
+                    <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&w=700&q=80"
+                        alt="Rose Petal Chanderi Saree">
                 </div>
                 <div class="card-body">
-                    <h3>Pure Organza & Silk</h3>
-                    <p>Lightweight, breezy luxury featuring floral accents and gentle pastel tones.</p>
+                    <div>
+                        <h3>Rose Petal Chanderi</h3>
+                        <p>Breathable, delicate weave highlighted with floral motifs and a soft festive sheen.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price-tag">Festive Weave</span>
+                        <a href="#visit" class="inquire-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
 
             <div class="collection-card">
                 <div class="card-img-wrapper">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="card-tag">Contemporary</span>
+                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=700&q=80"
+                        alt="Blush Pink Organza Saree">
                 </div>
                 <div class="card-body">
-                    <h3>Contemporary Designer</h3>
-                    <p>Chic, minimalist sarees created for evening parties, cocktails, and modern events.</p>
+                    <div>
+                        <h3>Blush Pink Organza</h3>
+                        <p>Modern lightweight pastel organza adorned with subtle hand-embroidery for evening wear.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price-tag">Party Collection</span>
+                        <a href="#visit" class="inquire-btn">Explore <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Location & Store Information Section -->
     <div class="location-section" id="visit">
         <div class="loc-details">
             <h3>Visit Our Nallasopara Boutique</h3>
@@ -641,41 +759,64 @@
             <h4
                 style="color: var(--deep-wine); margin-bottom: 0.8rem; font-family: 'Marcellus', serif; font-size: 1.3rem;">
                 Personalised Styling</h4>
-            <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">Walk into our shop for
-                tailored recommendations, drape trials, and unmatched bridal matching services.</p>
+            <p style="color: #666; font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem;">Walk into our shop for
+                draped styling previews, blouse matching guidance, and exclusive festive bridal offers.</p>
             <a href="https://maps.google.com" target="_blank" class="cta-btn"
                 style="padding: 0.6rem 1.4rem; font-size: 0.85rem;">Get Directions <i
                     class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-brand">Ehika</div>
         <div class="footer-sub">इहिका सारी</div>
-        <p class="footer-copy">© 2026 Ehika Saree Boutique. All Rights Reserved. Shop No. 14, Ostwal Nagari, Nallasopara
-            (E).</p>
+        <p class="footer-copy">© 2026 Ehika Saree Boutique. All Rights Reserved. Baba Regency, Nallasopara (E).</p>
     </footer>
 
-    <!-- Interactive JS -->
     <script>
-        // Smooth Sticky Navbar
+        // Sticky Header Effect
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 40) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
         });
 
-        // Ambient Glow Mouse Follow
-        const glow = document.getElementById('glow');
-        window.addEventListener('mousemove', (e) => {
-            glow.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
+        // Mobile Menu Drawer Functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
         });
 
-        // Interactive Pink Flower Petal Falling Canvas
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Ambient Glow Mouse Tracking
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+        });
+
+        // Falling Pink Petals Animation
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -714,9 +855,8 @@
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate((this.angle * Math.PI) / 180);
-                ctx.beginPath();
 
-                // Draw delicate 5-petal flower or single petal
+                // 5-petal flower shape
                 ctx.fillStyle = `rgba(216, 27, 96, ${this.opacity})`;
                 for (let i = 0; i < 5; i++) {
                     ctx.rotate((Math.PI * 2) / 5);
@@ -725,7 +865,7 @@
                     ctx.fill();
                 }
 
-                // Flower Golden Core
+                // Core dot
                 ctx.beginPath();
                 ctx.arc(0, 0, this.size * 0.2, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 220, 100, ${this.opacity + 0.2})`;
@@ -735,7 +875,7 @@
             }
         }
 
-        const petals = Array.from({length: 25}, () => new Petal());
+        const petals = Array.from({ length: 22 }, () => new Petal());
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
