@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ehika Saree | Elegance in Every Drape</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-pink: #d81b60;
+            --deep-wine: #6a0d25;
+            --soft-rose: #fce4ec;
+            --gold-accent: #d4af37;
+            --bg-creme: #fffafb;
+            --text-dark: #2c1810;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(216, 27, 96, 0.15);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-creme);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Flower Petals Canvas */
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Ambient Glow & Blobs */
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(216, 27, 96, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(40px);
+            transition: transform 0.2s ease-out;
+        }
+
+        /* Header / Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(255, 250, 251, 0.92);
+            padding: 0.8rem 8%;
+            box-shadow: 0 10px 30px rgba(106, 13, 37, 0.05);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-devanagari {
+            font-size: 0.85rem;
+            color: var(--primary-pink);
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .brand-name {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .brand-sub {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            color: var(--deep-wine);
+            margin-top: -3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 0.6rem;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-pink);
+        }
+
+        nav a:hover::after {
+            transform: translateX(-50%) scale(1);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--deep-wine));
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 0 8%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 80% 50%, rgba(252, 228, 236, 0.6) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            flex: 1.2;
+            padding-top: 4rem;
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--soft-rose);
+            color: var(--deep-wine);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(216, 27, 96, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Marcellus', serif;
+            font-size: 4rem;
+            line-height: 1.15;
+            color: var(--deep-wine);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--primary-pink);
+            font-family: 'Cinzel Decorative', cursive;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #665;
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary-pink);
+            color: var(--primary-pink);
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--soft-rose);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            flex: 0.8;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .visual-circle {
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            border: 2px dashed rgba(216, 27, 96, 0.4);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotateAura 30s linear infinite;
+        }
+
+        @keyframes rotateAura {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .visual-card {
+            position: absolute;
+            width: 320px;
+            height: 420px;
+            background: linear-gradient(145deg, #ffffff, #fff2f6);
+            border-radius: 200px 200px 30px 30px;
+            box-shadow: 0 25px 50px rgba(106, 13, 37, 0.12);
+            border: 4px solid #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            transform: rotate(-3deg);
+            transition: var(--transition);
+        }
+
+        .visual-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* Collections Section */
+        .section {
+            padding: 6rem 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Marcellus', serif;
+            font-size: 2.6rem;
+            color: var(--deep-wine);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '🌸';
+            position: absolute;
+            font-size: 1.2rem;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: #776;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .grid-collections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .collection-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(216, 27, 96, 0.15);
+        }
+
+        .card-img-wrapper {
+            height: 260px;
+            background: linear-gradient(135deg, #ffebee, #fce4ec);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper i {
+            font-size: 4.5rem;
+            color: var(--primary-pink);
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .collection-card:hover .card-img-wrapper i {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card-body {
+            padding: 1.8rem;
+            text-align: center;
+        }
+
+        .card-body h3 {
+            font-family: 'Marcellus', serif;
+            color: var(--deep-wine);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Visit / Location Box */
+        .location-section {
+            background: linear-gradient(135deg, #fff0f5 0%, #fff 100%);
+            border-radius: 30px;
+            margin: 2rem 8% 6rem 8%;
+            padding: 4rem;
+            border: 1px solid rgba(216, 27, 96, 0.15);
+            box-shadow: 0 20px 40px rgba(106, 13, 37, 0.04);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .loc-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .loc-details h3 {
+            font-family: 'Marcellus', serif;
+            font-size: 2.2rem;
+            color: var(--deep-wine);
+            margin-bottom: 1.5rem;
+        }
+
+        .loc-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .loc-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--soft-rose);
+            color: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .loc-text h4 {
+            color: var(--deep-wine);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .loc-text p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .loc-badge {
+            flex: 1;
+            min-width: 280px;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-pink);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-wine);
+            color: #fff;
+            padding: 3rem 8% 2rem 8%;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-sub {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            color: var(--soft-rose);
+            margin-bottom: 2rem;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 8rem;
+            }
+
+            .hero p {
+                margin: 0 auto 2.5rem auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                margin-top: 3rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Petal Simulation Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Cursor Follow Glow -->
+    <div class="ambient-glow" id="glow"></div>
+
+    <!-- Header Navigation -->
+    <header id="navbar">
+        <div class="brand">
+            <span class="brand-devanagari">इहिका सारी</span>
+            <span class="brand-name">Ehika</span>
+            <span class="brand-sub">Saree</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#visit">Visit Boutique</a></li>
+            </ul>
+        </nav>
+        <a href="#visit" class="cta-btn">
+            <i class="fa-solid fa-location-dot"></i> Find Us
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-tag">
+                🌸 Authentic Ethnic Drapes
+            </div>
+            <h1>Elegance Crafted For <span>Every Woman</span></h1>
+            <p>Step into the radiant world of handcrafted sarees. From timeless Banarasis to modern lightweight
+                georgettes, find the weave that speaks your elegance.</p>
+            <div class="hero-actions">
+                <a href="#collections" class="cta-btn">Explore Collection</a>
+                <a href="#visit" class="btn-outline">Visit Store</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-circle"></div>
+            <div class="visual-card">
+                <i class="fa-solid fa-spa card-icon"></i>
+                <h3 style="font-family: 'Marcellus', serif; color: var(--deep-wine); margin-bottom: 0.5rem;">Pure
+                    Heritage</h3>
+                <p style="font-size: 0.85rem; color: #777;">Graceful silk, rich textures, and royal shades designed to
+                    celebrate you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collections Section -->
+    <section class="section" id="collections">
+        <div class="section-title">
+            <h2>Signature Weaves</h2>
+            <p>Carefully curated sarees designed for festivities, weddings, and subtle everyday luxury.</p>
+        </div>
+
+        <div class="grid-collections">
+            <div class="collection-card">
+                <div class="card-img-wrapper">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Bridal & Kanjivaram</h3>
+                    <p>Woven with golden zari and festive hues, tailored for timeless celebratory memories.</p>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper">
+                    <i class="fa-solid fa-feather-pointed"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Pure Organza & Silk</h3>
+                    <p>Lightweight, breezy luxury featuring floral accents and gentle pastel tones.</p>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-wrapper">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div class="card-body">
+                    <h3>Contemporary Designer</h3>
+                    <p>Chic, minimalist sarees created for evening parties, cocktails, and modern events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Store Information Section -->
+    <div class="location-section" id="visit">
+        <div class="loc-details">
+            <h3>Visit Our Nallasopara Boutique</h3>
+            <div class="loc-info-item">
+                <div class="loc-icon"><i class="fa-solid fa-store"></i></div>
+                <div class="loc-text">
+                    <h4>Address</h4>
+                    <p>Shop No. 14, Baba Regency Apartment, Near U.S. English School, Ostwal Nagari, Nallasopara (E) -
+                        401209</p>
+                </div>
+            </div>
+            <div class="loc-info-item">
+                <div class="loc-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="loc-text">
+                    <h4>Store Timings</h4>
+                    <p>Monday – Sunday : 10:00 AM – 9:30 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="loc-badge">
+            <h4
+                style="color: var(--deep-wine); margin-bottom: 0.8rem; font-family: 'Marcellus', serif; font-size: 1.3rem;">
+                Personalised Styling</h4>
+            <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">Walk into our shop for
+                tailored recommendations, drape trials, and unmatched bridal matching services.</p>
+            <a href="https://maps.google.com" target="_blank" class="cta-btn"
+                style="padding: 0.6rem 1.4rem; font-size: 0.85rem;">Get Directions <i
+                    class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-brand">Ehika</div>
+        <div class="footer-sub">इहिका सारी</div>
+        <p class="footer-copy">© 2026 Ehika Saree Boutique. All Rights Reserved. Shop No. 14, Ostwal Nagari, Nallasopara
+            (E).</p>
+    </footer>
+
+    <!-- Interactive JS -->
+    <script>
+        // Smooth Sticky Navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Ambient Glow Mouse Follow
+        const glow = document.getElementById('glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.transform = `translate(${e.clientX - 250}px, ${e.clientY - 250}px)`;
+        });
+
+        // Interactive Pink Flower Petal Falling Canvas
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height - height;
+                this.size = Math.random() * 8 + 6;
+                this.speedY = Math.random() * 1.2 + 0.8;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 1.5 - 0.75;
+                this.opacity = Math.random() * 0.5 + 0.3;
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
+                this.angle += this.spin;
+
+                if (this.y > height) {
+                    this.y = -20;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.angle * Math.PI) / 180);
+                ctx.beginPath();
+
+                // Draw delicate 5-petal flower or single petal
+                ctx.fillStyle = `rgba(216, 27, 96, ${this.opacity})`;
+                for (let i = 0; i < 5; i++) {
+                    ctx.rotate((Math.PI * 2) / 5);
+                    ctx.beginPath();
+                    ctx.ellipse(0, this.size * 0.6, this.size * 0.35, this.size * 0.7, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Flower Golden Core
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size * 0.2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 220, 100, ${this.opacity + 0.2})`;
+                ctx.fill();
+
+                ctx.restore();
+            }
+        }
+
+        const petals = Array.from({length: 25}, () => new Petal());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
